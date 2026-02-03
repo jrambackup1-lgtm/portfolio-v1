@@ -1,20 +1,42 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <img width="1200" alt="Jayaram H Portfolio Banner" src="banner.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Jayaram H | Product Design Engineer
 
-This contains everything you need to run your app locally.
+Portfolio 2026. "There's a big difference between making a simple product & making a product simple." — Des Traynor
 
-View your app in AI Studio: https://ai.studio/apps/drive/1tWmf9ok766c_WzmuLNK-VoCH2qerLtvB
+## 🚀 Overview
 
-## Run Locally
+This repository contains my personal portfolio website, designed and built to showcase my work as a Product Design Engineer. It focuses on clean aesthetics, smooth interactions, and a premium user experience.
 
-**Prerequisites:**  Node.js
+## 🛠️ Tech Stack
 
+- **Framework**: Vite + React
+- **Styling**: Vanilla CSS / Tailwind CSS
+- **Intelligence**: Built with AI Studio & AntiGravity
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 💻 Running Locally
+
+**Prerequisites:** Node.js
+
+1.  **Clone the repository**
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Set up environment**:
+    Create a `.env.local` file and add your Gemini API key:
+    ```env
+    VITE_GEMINI_API_KEY=your_api_key_here
+    ```
+4.  **Run the app**:
+    ```bash
+    npm run dev
+    ```
+
+---
+
+<div align="center">
+  MAKING STUFF. / BREAKING STUFF. / FIXING STUFF.
+</div>
