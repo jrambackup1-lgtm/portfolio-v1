@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Cursor from './components/Cursor';
 import CollageItem from './components/CollageItem';
 import ProjectModal from './components/ProjectModal';
+import InfoModal from './components/InfoModal';
 import { SwirlVine, CircleScribble, StarSparkle, Underline, Crosshair, Stamp } from './components/Doodles';
-import { Project } from './types';
+import { Project, InfoItem } from './types';
 
 // Mock Data for "Objects" (Projects)
 const projects: Project[] = [
@@ -55,6 +56,7 @@ const tapeColors = ["#D4C5A5", "#E8C4C4", "#C4E8D5", "#D0D8D8"];
 const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<InfoItem | null>(null);
   const [layoutKey, setLayoutKey] = useState(0);
 
   const handleReset = () => {
@@ -71,6 +73,15 @@ const App: React.FC = () => {
           <ProjectModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {selectedInfo && (
+          <InfoModal
+            info={selectedInfo}
+            onClose={() => setSelectedInfo(null)}
           />
         )}
       </AnimatePresence>
@@ -219,8 +230,25 @@ const App: React.FC = () => {
       </CollageItem>
 
       {/* Color Palette Card */}
-      <CollageItem key={`palette-${layoutKey}`} containerRef={containerRef} x="4%" y="38%" speed={0.9} rotation={-5} zIndex={6}>
-        <div className="bg-white p-1.5 shadow-md flex flex-col gap-1 w-8 hover:rotate-3 transition-transform">
+      <CollageItem
+        key={`palette-${layoutKey}`}
+        containerRef={containerRef}
+        x="4%"
+        y="38%"
+        speed={0.9}
+        rotation={-5}
+        zIndex={6}
+      >
+        <div
+          className="bg-white p-1.5 shadow-md flex flex-col gap-1 w-8 hover:rotate-3 transition-transform cursor-pointer"
+          data-hoverable="true"
+          onClick={() => setSelectedInfo({
+            id: 'colors',
+            title: 'Design Palette',
+            category: 'colors',
+            content: ['#2f2f2f', '#8B4513', '#D4C5A5', '#E8C4C4']
+          })}
+        >
           {['#2f2f2f', '#8B4513', '#D4C5A5', '#E8C4C4'].map(c => (
             <div key={c} className="w-full h-8" style={{ backgroundColor: c }} />
           ))}
@@ -238,18 +266,44 @@ const App: React.FC = () => {
         </div>
       </CollageItem>
 
-      {/* Skills Tag */}
+      {/* Skills Tag - Expanded */}
       <CollageItem key={`skills-${layoutKey}`} containerRef={containerRef} x="25%" y="48%" speed={0.6} rotation={-3} zIndex={8}>
-        <div className="bg-white px-3 py-2 shadow-md border border-gray-300 hover:scale-105 transition-transform duration-300">
+        <div
+          className="bg-white px-3 py-2 shadow-md border border-gray-300 hover:scale-105 transition-transform duration-300 cursor-pointer"
+          data-hoverable="true"
+          onClick={() => setSelectedInfo({
+            id: 'skills',
+            title: 'Technical Arsenal',
+            category: 'skills',
+            content: [
+              'SolidWorks', 'Fusion 360', 'Rhino', 'Keyshot',
+              'FDM / SLA Printing', 'Sheet Metal Design',
+              'CNC Machining', 'Injection Molding'
+            ]
+          })}
+        >
           <p className="font-mono text-[9px] uppercase tracking-wider text-charcoal font-medium">
-            SolidWorks <span className="text-gray-400">•</span> Fusion360 <span className="text-gray-400">•</span> FDM/SLA
+            Skills <span className="text-gray-400">•</span> Software <span className="text-gray-400">•</span> Services
           </p>
+          <div className="mt-1 flex gap-1 items-center">
+            <span className="w-1 h-1 bg-accent-blue rounded-full" />
+            <span className="font-mono text-[7px] text-gray-400">Expanded Access</span>
+          </div>
         </div>
       </CollageItem>
 
       {/* Material Swatch */}
       <CollageItem key={`materials-${layoutKey}`} containerRef={containerRef} x="70%" y="30%" speed={0.8} rotation={5} zIndex={7}>
-        <div className="bg-white p-2 shadow-md border border-gray-200 hover:rotate-6 transition-transform duration-300">
+        <div
+          className="bg-white p-2 shadow-md border border-gray-200 hover:rotate-6 transition-transform duration-300 cursor-pointer"
+          data-hoverable="true"
+          onClick={() => setSelectedInfo({
+            id: 'materials',
+            title: 'Materiality Lab',
+            category: 'materials',
+            content: 'Focusing on Aluminum 6061-T6 for housing, bio-compatible PLA for prototyping, and shore-A 40-70 TPU for tactile dampening.'
+          })}
+        >
           <div className="flex gap-1 mb-1">
             <div className="w-6 h-6 bg-gradient-to-br from-gray-300 to-gray-400" title="Aluminum" />
             <div className="w-6 h-6 bg-gradient-to-br from-gray-100 to-gray-200" title="ABS" />
@@ -259,23 +313,39 @@ const App: React.FC = () => {
         </div>
       </CollageItem>
 
-      {/* Timeline Snippet */}
-      <CollageItem key={`timeline-${layoutKey}`} containerRef={containerRef} x="8%" y="75%" speed={1.0} rotation={-8} zIndex={9}>
-        <div className="bg-[#FFFEF5] p-2.5 shadow-[2px_3px_6px_rgba(0,0,0,0.12)] border-l-2 border-accent-blue hover:scale-105 transition-transform duration-300">
-          <p className="font-hand text-charcoal text-xs leading-tight">
-            2019-2024<br />
-            <span className="text-[10px] text-gray-600">12 products shipped</span>
-          </p>
+      {/* Domains Tag */}
+      <CollageItem key={`domains-${layoutKey}`} containerRef={containerRef} x="12%" y="15%" speed={0.4} rotation={2} zIndex={5}>
+        <div
+          className="bg-paper px-3 py-1.5 shadow-sm border-2 border-dashed border-gray-300 hover:bg-white transition-colors cursor-pointer"
+          data-hoverable="true"
+          onClick={() => setSelectedInfo({
+            id: 'domains',
+            title: 'Operational Domains',
+            category: 'domains',
+            content: ['Consumer Audio', 'Medical Devices', 'Tactical Wearables', 'Eco-Packaging']
+          })}
+        >
+          <p className="font-mono text-[9px] uppercase tracking-tighter text-gray-500">Domains / Industries</p>
+          <div className="h-px w-full bg-gray-200 my-1" />
+          <p className="font-sans text-[10px] italic">Design Engineering</p>
         </div>
       </CollageItem>
 
-      {/* Philosophy Card */}
-      <CollageItem key={`philosophy-${layoutKey}`} containerRef={containerRef} x="50%" y="95%" speed={0.5} rotation={2} zIndex={11}>
-        <div className="max-w-xs bg-white/90 p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-          <p className="font-serif-display text-sm italic leading-snug text-charcoal">
-            "Design is not just what it looks like. Design is how it works."
-          </p>
-          <p className="font-mono text-[9px] mt-2 text-gray-500">— Steve Jobs</p>
+      {/* Manufacturing Processes */}
+      <CollageItem key={`mfg-${layoutKey}`} containerRef={containerRef} x="72%" y="78%" speed={0.7} rotation={-4} zIndex={15}>
+        <div
+          className="bg-gray-100 p-3 shadow-md border border-black/10 hover:shadow-lg transition-all cursor-pointer group"
+          data-hoverable="true"
+          onClick={() => setSelectedInfo({
+            id: 'manufacturing',
+            title: 'Manufacturing / Specs',
+            category: 'manufacturing',
+            content: 'Specializing in DFM (Design for Manufacturing) across sheet metal folding, multi-axis CNC milling, and high-precision injection molding.'
+          })}
+        >
+          <p className="font-mono text-[7px] text-gray-400 uppercase tracking-[0.3em] mb-1 group-hover:text-accent-blue">Process Log</p>
+          <h4 className="font-serif-display text-sm italic">Sheet Metal / CNC / Plastics</h4>
+          <div className="mt-2 text-[6px] font-mono text-gray-300">01001-MFG-X</div>
         </div>
       </CollageItem>
 

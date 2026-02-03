@@ -24,3 +24,10 @@ export interface FloatingItemProps {
   containerRef?: React.RefObject<HTMLElement | null>;
   onClick?: () => void;
 }
+
+export interface InfoItem {
+  id: string;
+  title: string;
+  category: 'materials' | 'colors' | 'skills' | 'domains' | 'manufacturing';
+  content: string | string[];
+}
