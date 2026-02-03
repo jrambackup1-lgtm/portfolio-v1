@@ -238,6 +238,47 @@ const App: React.FC = () => {
         </div>
       </CollageItem>
 
+      {/* Skills Tag */}
+      <CollageItem key={`skills-${layoutKey}`} containerRef={containerRef} x="25%" y="48%" speed={0.6} rotation={-3} zIndex={8}>
+        <div className="bg-white px-3 py-2 shadow-md border border-gray-300 hover:scale-105 transition-transform duration-300">
+          <p className="font-mono text-[9px] uppercase tracking-wider text-charcoal font-medium">
+            SolidWorks <span className="text-gray-400">•</span> Fusion360 <span className="text-gray-400">•</span> FDM/SLA
+          </p>
+        </div>
+      </CollageItem>
+
+      {/* Material Swatch */}
+      <CollageItem key={`materials-${layoutKey}`} containerRef={containerRef} x="70%" y="30%" speed={0.8} rotation={5} zIndex={7}>
+        <div className="bg-white p-2 shadow-md border border-gray-200 hover:rotate-6 transition-transform duration-300">
+          <div className="flex gap-1 mb-1">
+            <div className="w-6 h-6 bg-gradient-to-br from-gray-300 to-gray-400" title="Aluminum" />
+            <div className="w-6 h-6 bg-gradient-to-br from-gray-100 to-gray-200" title="ABS" />
+            <div className="w-6 h-6 bg-gradient-to-br from-orange-100 to-orange-200" title="TPU" />
+          </div>
+          <p className="font-mono text-[7px] uppercase text-gray-500 tracking-widest text-center">Materials</p>
+        </div>
+      </CollageItem>
+
+      {/* Timeline Snippet */}
+      <CollageItem key={`timeline-${layoutKey}`} containerRef={containerRef} x="8%" y="75%" speed={1.0} rotation={-8} zIndex={9}>
+        <div className="bg-[#FFFEF5] p-2.5 shadow-[2px_3px_6px_rgba(0,0,0,0.12)] border-l-2 border-accent-blue hover:scale-105 transition-transform duration-300">
+          <p className="font-hand text-charcoal text-xs leading-tight">
+            2019-2024<br />
+            <span className="text-[10px] text-gray-600">12 products shipped</span>
+          </p>
+        </div>
+      </CollageItem>
+
+      {/* Philosophy Card */}
+      <CollageItem key={`philosophy-${layoutKey}`} containerRef={containerRef} x="50%" y="95%" speed={0.5} rotation={2} zIndex={11}>
+        <div className="max-w-xs bg-white/90 p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+          <p className="font-serif-display text-sm italic leading-snug text-charcoal">
+            "Design is not just what it looks like. Design is how it works."
+          </p>
+          <p className="font-mono text-[9px] mt-2 text-gray-500">— Steve Jobs</p>
+        </div>
+      </CollageItem>
+
 
       {/* --- SECTION 2: OBJECTS / PROJECTS (130vh - 410vh) --- */}
       {/* Background Grid Pattern for Technical Feel */}
