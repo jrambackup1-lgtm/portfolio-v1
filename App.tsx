@@ -203,10 +203,10 @@ const App: React.FC = () => {
       {/* New Quote: David Foster Wallace */}
       <CollageItem key={`dfw-quote-${layoutKey}`} containerRef={containerRef} x="35%" y="55%" speed={0.7} rotation={3} zIndex={12}>
         <div className="max-w-xs cursor-default">
-          <p className="font-serif-display text-lg text-charcoal opacity-90 leading-snug">
+          <p className="font-serif-display text-xl md:text-2xl italic leading-tight text-charcoal opacity-90">
             "This is water."
           </p>
-          <p className="font-mono text-[9px] mt-2 text-gray-500 uppercase tracking-widest">— David Foster Wallace</p>
+          <p className="font-mono text-[10px] mt-3 text-gray-500">— David Foster Wallace</p>
         </div>
       </CollageItem>
 
