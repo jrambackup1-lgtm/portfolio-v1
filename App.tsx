@@ -92,21 +92,7 @@ const App: React.FC = () => {
 
         {/* Top Right - Menu */}
         <div className="absolute top-8 right-8 md:top-12 md:right-12 flex flex-col items-end gap-2 pointer-events-auto">
-          {['Work', 'About', 'Process', 'Contact'].map((item, i) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 + (i * 0.1) }}
-              whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
-              className="group font-sans text-xs uppercase tracking-widest hover:text-accent-blue transition-colors relative"
-              data-hoverable="true"
-            >
-              {item}
-              <span className="absolute -right-2 top-0 text-[9px] font-serif opacity-0 group-hover:opacity-100 transition-opacity">0{i + 1}</span>
-            </motion.a>
-          ))}
+
 
           {/* Reset Button */}
           <motion.button
@@ -121,13 +107,7 @@ const App: React.FC = () => {
           </motion.button>
         </div>
 
-        {/* Bottom Left - Status */}
-        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 pointer-events-auto">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-            <span className="font-mono text-[10px] text-gray-600">Available for freelance</span>
-          </div>
-        </div>
+
 
         {/* Bottom Right - Contact */}
         <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 pointer-events-auto">
@@ -217,6 +197,47 @@ const App: React.FC = () => {
           </div>
         </CollageItem>
       </section>
+
+      {/* --- NEW ELEMENTS (Increased Density) --- */}
+
+      {/* New Quote: David Foster Wallace */}
+      <CollageItem key={`dfw-quote-${layoutKey}`} containerRef={containerRef} x="35%" y="55%" speed={0.7} rotation={3} zIndex={12}>
+        <div className="max-w-xs cursor-default">
+          <p className="font-serif-display text-lg text-charcoal opacity-90 leading-snug">
+            "This is water."
+          </p>
+          <p className="font-mono text-[9px] mt-2 text-gray-500 uppercase tracking-widest">— David Foster Wallace</p>
+        </div>
+      </CollageItem>
+
+      {/* Barcode Sticker */}
+      <CollageItem key={`barcode-${layoutKey}`} containerRef={containerRef} x="80%" y="12%" speed={0.4} rotation={90} zIndex={4}>
+        <div className="bg-white p-2 shadow-sm border border-gray-200 hover:scale-105 transition-transform duration-300">
+          <div className="h-8 w-24 bg-[url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/UPC-A-036000291452.svg/320px-UPC-A-036000291452.svg.png')] bg-cover opacity-80 mix-blend-multiply grayscale"></div>
+          <p className="font-mono text-[8px] text-center mt-1 tracking-[0.2em]">092-2-XA</p>
+        </div>
+      </CollageItem>
+
+      {/* Color Palette Card */}
+      <CollageItem key={`palette-${layoutKey}`} containerRef={containerRef} x="4%" y="38%" speed={0.9} rotation={-5} zIndex={6}>
+        <div className="bg-white p-1.5 shadow-md flex flex-col gap-1 w-8 hover:rotate-3 transition-transform">
+          {['#2f2f2f', '#8B4513', '#D4C5A5', '#E8C4C4'].map(c => (
+            <div key={c} className="w-full h-8" style={{ backgroundColor: c }} />
+          ))}
+        </div>
+      </CollageItem>
+
+      {/* Handwritten Note */}
+      <CollageItem key={`note-${layoutKey}`} containerRef={containerRef} x="88%" y="92%" speed={1.1} rotation={-10} zIndex={25}>
+        <div className="bg-[#FFFFF0] p-3 shadow-[2px_4px_8px_rgba(0,0,0,0.1)] -rotate-2 transform hover:scale-105 transition-transform duration-300 group">
+          <p className="font-hand text-charcoal text-sm leading-tight text-blue-800/80">
+            Draft v0.9<br />
+            <span className="text-[10px] opacity-70">Check fit & finish.</span>
+          </p>
+          <div className="w-8 h-8 rounded-full border-2 border-red-500/30 absolute -top-2 -right-2" />
+        </div>
+      </CollageItem>
+
 
       {/* --- SECTION 2: OBJECTS / PROJECTS (130vh - 410vh) --- */}
       {/* Background Grid Pattern for Technical Feel */}
